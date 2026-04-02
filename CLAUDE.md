@@ -84,10 +84,6 @@ No test runner is configured. No linter is configured.
 - **`src/context.ts`** — Builds system/user context for the API call (git status, date, CLAUDE.md contents, memory files).
 - **`src/utils/claudemd.ts`** — Discovers and loads CLAUDE.md files from project hierarchy.
 
-### Feature Flag System
-
-All `feature('FLAG_NAME')` calls come from `bun:bundle` (a build-time API). In this decompiled version, `feature()` is polyfilled to always return `false` in `cli.tsx`. This means all Anthropic-internal features (COORDINATOR_MODE, KAIROS, PROACTIVE, etc.) are disabled.
-
 ### Stubbed/Deleted Modules
 
 | Module | Status |

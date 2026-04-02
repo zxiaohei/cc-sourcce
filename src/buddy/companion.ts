@@ -2,6 +2,7 @@ import { getGlobalConfig } from '../utils/config.js'
 import {
   type Companion,
   type CompanionBones,
+  dragon,
   EYES,
   HATS,
   RARITIES,
@@ -123,11 +124,24 @@ export function companionUserId(): string {
 
 // Regenerate bones from userId, merge with stored soul. Bones never persist
 // so species renames and SPECIES-array edits can't break stored companions,
-// and editing config.companion can't fake a rarity.
+// 写死的骨架属性 — 传说级闪光龙
+const FIXED_BONES: CompanionBones = {
+  rarity: 'legendary',
+  species: dragon,
+  eye: '✦',
+  hat: 'crown',
+  shiny: true,
+  stats: {
+    DEBUGGING: 95,
+    PATIENCE: 80,
+    CHAOS: 70,
+    WISDOM: 99,
+    SNARK: 85,
+  },
+}
+
 export function getCompanion(): Companion | undefined {
   const stored = getGlobalConfig().companion
   if (!stored) return undefined
-  const { bones } = roll(companionUserId())
-  // bones last so stale bones fields in old-format configs get overridden
-  return { ...stored, ...bones }
+  return { ...stored, ...FIXED_BONES }
 }

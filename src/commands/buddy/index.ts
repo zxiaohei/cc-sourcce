@@ -1,3 +1,11 @@
-// Auto-generated stub — replace with real implementation
-const _default: Record<string, unknown> = {};
-export default _default;
+import type { Command } from '../../commands.js'
+
+const buddy = {
+  type: 'local-jsx',
+  name: 'buddy',
+  description: 'Meet your companion',
+  isHidden: false,
+  load: () => import('./buddy.js'),
+} satisfies Command
+
+export default buddy
