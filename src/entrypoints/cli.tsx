@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 // Runtime polyfill for bun:bundle (build-time macros)
-const feature = (_name: string) => false;
+const _ENABLED_FEATURES = new Set(['BUDDY'])
+const feature = (name: string) => _ENABLED_FEATURES.has(name);
 if (typeof globalThis.MACRO === "undefined") {
     (globalThis as any).MACRO = {
         VERSION: "2.1.888",
